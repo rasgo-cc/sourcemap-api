@@ -1,0 +1,31 @@
+{
+  "name": "greenmap_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js --inspect",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mario Ribeiro <mario@rasgo.cc>",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^18.3.1",
+    "async": "^2.6.1",
+    "boom": "^7.3.0",
+    "dotenv": "^6.2.0",
+    "dotenv-flow": "^0.2.0",
+    "global": "^4.3.2",
+    "hapi-auth-basic": "^5.0.0",
+    "hapi-pino": "^5.2.0",
+    "hapi-swagger": "^9.3.0",
+    "inert": "^5.1.2",
+    "knex": "^0.16.5",
+    "pg": "^7.11.0",
+    "url-join": "^4.0.0",
+    "vision": "^5.4.4"
+  },
+  "devDependencies": {
+    "csv-parser": "^2.3.0"
+  }
+}
