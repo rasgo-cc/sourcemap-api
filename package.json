@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --inspect",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mario Ribeiro <mario@rasgo.cc>",
@@ -17,6 +17,7 @@
     "dotenv-flow": "^0.2.0",
     "global": "^4.3.2",
     "hapi-auth-basic": "^5.0.0",
+    "hapi-cors": "^1.0.3",
     "hapi-pino": "^5.2.0",
     "hapi-swagger": "^9.3.0",
     "inert": "^5.1.2",

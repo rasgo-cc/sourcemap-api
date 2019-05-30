@@ -12,6 +12,7 @@ const hapiPlugins = [
   { plugin: require("vision") },
   { plugin: require("hapi-pino"), options: { instance: logger } },
   { plugin: require("hapi-auth-basic") },
+  { plugin: require("hapi-cors"), options: {} },
   { plugin: require("./lib/plugins/auth"), routes: pluginApiRoutesOpts },
   { plugin: require("./lib/plugins/common"), routes: pluginApiRoutesOpts },
   { plugin: require("./lib/plugins/place"), routes: pluginApiRoutesOpts }
