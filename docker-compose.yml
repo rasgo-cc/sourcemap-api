@@ -1,5 +1,26 @@
-version: "3.3"
+version: "3.4"
+
+x-logging: &default-logging
+  options:
+    max-size: "200k"
+    max-file: "10"
+
 services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - ".env"
+    environment:
+      - HTTP_HOST=0.0.0.0
+      - NODE_ENV=production
+    depends_on:
+      - postgis
+    links:
+      - postgis
+    restart: unless-stopped
+    logging: *default-logging
   postgis:
     image: mdillon/postgis
     env_file:
@@ -8,5 +29,6 @@ services:
       - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
+    logging: *default-logging
 volumes:
   pgdata:
