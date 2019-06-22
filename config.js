@@ -32,9 +32,9 @@ exports = module.exports = {
     }
   },
   http: {
-    host: env.HTTP_HOST || "localhost",
+    host: env.HTTP_HOST || "0.0.0.0",
     port: env.HTTP_PORT || 8080,
-    cors: env.HTTP_CORS || false
+    cors: env.HTTP_CORS ? { origin: [env.HTTP_CORS] } : false
   },
   api: {
     version: env.API_VERSION || Package.version,

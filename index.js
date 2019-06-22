@@ -8,11 +8,10 @@ const pluginApiRoutesOpts = {
 };
 
 const hapiPlugins = [
-  { plugin: require("inert") },
-  { plugin: require("vision") },
+  { plugin: require("@hapi/inert") },
+  { plugin: require("@hapi/vision") },
+  { plugin: require("@hapi/basic") },
   { plugin: require("hapi-pino"), options: { instance: logger } },
-  { plugin: require("hapi-auth-basic") },
-  { plugin: require("hapi-cors"), options: {} },
   { plugin: require("./lib/plugins/auth"), routes: pluginApiRoutesOpts },
   { plugin: require("./lib/plugins/common"), routes: pluginApiRoutesOpts },
   { plugin: require("./lib/plugins/place"), routes: pluginApiRoutesOpts }
@@ -29,14 +28,6 @@ const server = Hapi.server({
   port: config.http.port,
   routes: {
     cors: config.http.cors
-  }
-});
-
-server.route({
-  method: "GET",
-  path: "/hello",
-  handler: function(request, h) {
-    return "hello world";
   }
 });
 
