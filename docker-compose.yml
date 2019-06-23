@@ -21,7 +21,7 @@ services:
       - postgis
     restart: unless-stopped
     logging: *default-logging
-  postgis:
+  pg:
     image: mdillon/postgis
     env_file:
       - ".env"
