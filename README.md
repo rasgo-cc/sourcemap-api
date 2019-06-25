@@ -3,9 +3,10 @@
 ## Environment Variables
 
 ```
+COMPOSE_PROJECT_NAME=greenmap
 POSTGRES_DB=greenmap
 POSTGRES_USER=postgres
-POSTGRES_PASSWORD=<pass>
+POSTGRES_PASSWORD=<password></password>
 DB_CONNSTR=<connstr>
 ```
 
@@ -47,5 +48,5 @@ Dump and restore
 
 ```
 docker exec greenmap_pg_1 pg_dump -U postgres -d greenmap -v -Fc > ./tmp/backup_local.dump
-pg_restore --clean --no-acl --no-owner -U postgres -d greenmap -v ./tmp/backup_local.dump
+docker exec greenmap_pg_1 pg_restore --clean --no-acl --no-owner -U postgres -d greenmap -v ./tmp/backup_local.dump
 ```
