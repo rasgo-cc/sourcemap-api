@@ -46,6 +46,11 @@ Available at `/swagger`
 Dump and restore
 
 ```
-docker exec greenmap_pg_1 pg_dump -U postgres -d greenmap -v -Fc > ./tmp/backup_local.dump
-pg_restore --clean --no-acl --no-owner -U postgres -d greenmap -v ./tmp/backup_local.dump
+docker exec greenmap_pg_1 pg_dump -U postgres -d greenmap -v -Fc > ./tmp/db.dump
+
+docker cp ./tmp/db.dump greenmap_pg_1:/tmp
+docker exec -it greenmap_pg_1 bash
+pg_restore --clean --no-acl --no-owner -U postgres -d greenmap -v /tmp/db.dump
+
+pg_restore --clean --no-acl --no-owner -h 192.168.99.100 -U postgres -d greenmap -v .\tmp\db.dump
 ```
