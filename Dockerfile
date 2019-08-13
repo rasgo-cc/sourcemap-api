@@ -17,4 +17,4 @@ RUN yarn global add jake
 RUN yarn install --production
 
 EXPOSE 80
-CMD node --use_strict /app/index.js --production
+CMD node -r esm --use_strict /app/index.js --production

@@ -17,8 +17,10 @@ services:
       - NODE_ENV=production
     depends_on:
       - pg
+      - redis
     links:
       - pg
+      - redis
     restart: unless-stopped
     logging: *default-logging
   pg:
@@ -30,5 +32,15 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     logging: *default-logging
+  redis:
+    image: bitnami/redis
+    env_file:
+      - ".env"
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/bitnami/redis/data
+    logging: *default-logging
 volumes:
   pgdata:
+  redisdata:

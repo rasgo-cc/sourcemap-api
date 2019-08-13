@@ -3,10 +3,14 @@
 ## Environment Variables
 
 ```
+COMPOSE_PROJECT_NAME="greenmap"
 POSTGRES_DB=greenmap
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=<pass>
-DB_CONNSTR=<connstr>
+DB_CONNSTR=<conn_str>
+REDIS_PASSWORD=<redis_password>
+REDIS_URL=<redis_url>
+GEOHASH_PRECISION=6
 ```
 
 See `config.js` for other environment variables that might be used.
@@ -24,7 +28,8 @@ jake -f tasks/places.js seed
 ## Development
 
 ```
-docker-compose up postgis
+docker-compose up pg
+docker-compose up redis
 
 yarn dev
 ```
@@ -43,7 +48,7 @@ Available at `/swagger`
 
 ## Other tasks
 
-Dump and restore
+Dump and restore DB
 
 ```
 docker exec greenmap_pg_1 pg_dump -U postgres -d greenmap -v -Fc > ./tmp/db.dump

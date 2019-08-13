@@ -13,7 +13,7 @@ const target = env.NODE_ENV;
 
 exports = module.exports = {
   target: target,
-  logger: {
+  pino: {
     level: env.LOG_LEVEL || "debug",
     prettyPrint:
       // pino-pretty must be installed (npm i -g pino-pretty)
@@ -21,17 +21,21 @@ exports = module.exports = {
         ? {
             colorize: true,
             translateTime: "HH:MM:ss",
-            ignore: "pid,hostname"
+            ignore: "pid,hostname,req"
           }
         : false
   },
   auth: {
-    simple: {
+    cookie_encryption_password:
+      env.AUTH_COOKIE_ENCRYPTION_PASSWORD ||
+      "cookie_encryption_password_secure",
+    basic: {
       user: env.AUTH_SIMPLE_USER || "admin",
       password: env.AUTH_SIMPLE_PASSWORD || "admin"
     }
   },
   http: {
+    secure: env.HTTPS || false,
     host: env.HTTP_HOST || "0.0.0.0",
     port: env.HTTP_PORT || 8080,
     cors: env.HTTP_CORS ? { origin: [env.HTTP_CORS] } : false
@@ -40,7 +44,7 @@ exports = module.exports = {
     version: env.API_VERSION || Package.version,
     prefix: env.API_PREFIX || "/api",
     swagger: {
-      auth: "simple",
+      auth: "basic",
       info: {
         title: env.API_DOCS_TITLE || Package.name
       },
@@ -52,5 +56,8 @@ exports = module.exports = {
     connStr: env.DB_CONNSTR,
     poolSize: env.DB_POOLSIZE || 10,
     debug: target == "development" ? env.DB_DEBUG || false : false
+  },
+  geohash: {
+    precision: env.GEOHASH_PRECISION || 7
   }
 };

@@ -1,9 +1,10 @@
 // const mongoose = require("mongoose");
 const config = require("../config");
-const logger = require("pino")(config.logger);
+const logger = require("pino")(config.pino);
 const knexConfig = require("../knexfile");
 
 const knex = require("knex")(knexConfig);
+const redis = require("async-redis").createClient(process.env.REDIS_URL);
 
 const sleep = milliseconds => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -12,7 +13,7 @@ const sleep = milliseconds => {
 const db = {
   async init() {
     let connectionOk = false;
-    let retries = 5;
+    let retries = 10;
     logger.info("connecting to database");
     while (!connectionOk && --retries) {
       try {
@@ -29,7 +30,8 @@ const db = {
       logger.error("couldn't establish connection to database");
     }
   },
-  knex: knex
+  knex: knex,
+  redis: redis
 };
 
 exports = module.exports = db;
