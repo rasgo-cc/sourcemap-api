@@ -28,9 +28,7 @@
     "hapi-swagger": "^10.0.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.17.6",
-    "laabr": "^5.1.0",
     "latlon-geohash": "^2.0.0",
-    "lodash": "^4.17.15",
-    "pg": "^7.11.0"
+    "lodash": "^4.17.15"
   }
 }
