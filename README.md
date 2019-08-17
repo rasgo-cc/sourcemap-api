@@ -33,6 +33,7 @@ jake -f tasks/places.js seed
 ## Development
 
 ```
+npm i -g nodemon
 docker-compose up pg
 docker-compose up redis
 
