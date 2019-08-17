@@ -1,6 +1,6 @@
 const Hapi = require("@hapi/hapi");
 const config = require("./config");
-const logger = require("pino")(config.logger);
+const logger = require("./logger");
 const db = require("./db");
 
 const pluginApiRoutesOpts = {
@@ -11,10 +11,17 @@ const hapiPlugins = [
   { plugin: require("@hapi/inert") },
   { plugin: require("@hapi/vision") },
   { plugin: require("@hapi/basic") },
-  { plugin: require("hapi-pino"), options: { instance: logger } },
+  { plugin: require("@hapi/bell") },
+  {
+    plugin: require("hapi-pino"),
+    options: {
+      instance: logger
+    }
+  },
   { plugin: require("./lib/plugins/auth"), routes: pluginApiRoutesOpts },
   { plugin: require("./lib/plugins/common"), routes: pluginApiRoutesOpts },
-  { plugin: require("./lib/plugins/place"), routes: pluginApiRoutesOpts }
+  { plugin: require("./lib/plugins/place"), routes: pluginApiRoutesOpts },
+  { plugin: require("./lib/plugins/user"), routes: pluginApiRoutesOpts }
 ];
 if (config.target == "development") {
   hapiPlugins.push({
@@ -42,3 +49,8 @@ const start = async function() {
   }
 };
 start();
+
+process.on("SIGINT", () => {
+  console.log("Bye bye!");
+  process.exit();
+});

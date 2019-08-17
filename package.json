@@ -11,17 +11,26 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/basic": "^5.1.0",
+    "@hapi/bell": "^10.1.0",
     "@hapi/boom": "^7.4.2",
     "@hapi/hapi": "^18.3.1",
     "@hapi/hoek": "^7.1.0",
     "@hapi/inert": "^5.2.0",
     "@hapi/vision": "^5.5.2",
+    "@sendgrid/mail": "^6.4.0",
+    "async-redis": "^1.1.7",
+    "bcrypt": "^3.0.6",
     "csv-parser": "^2.3.0",
     "dotenv": "^8.0.0",
+    "esm": "^3.2.25",
     "hapi-crudy": "^1.0.1",
     "hapi-pino": "^6.0.1",
     "hapi-swagger": "^10.0.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.17.6",
+    "laabr": "^5.1.0",
+    "latlon-geohash": "^2.0.0",
+    "lodash": "^4.17.15",
     "pg": "^7.11.0"
   }
 }
