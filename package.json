@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:drop": "jake -f tasks/db.js drop",
+    "db:create": "jake -f tasks/db.js create",
+    "db:reset": "jake -f tasks/db.js reset && yarn db:migrate",
+    "db:seed": "jake -f tasks/seed.js",
+    "db:migrate": "knex migrate:latest"
   },
   "author": "Mario Ribeiro <mario@rasgo.cc>",
   "license": "ISC",
@@ -20,6 +25,8 @@
     "@sendgrid/mail": "^6.4.0",
     "async-redis": "^1.1.7",
     "bcrypt": "^3.0.6",
+    "bluebird": "^3.5.5",
+    "consola": "^2.10.1",
     "csv-parser": "^2.3.0",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
@@ -29,6 +36,15 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.17.6",
     "latlon-geohash": "^2.0.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "module-alias": "^2.2.1",
+    "pg": "^7.12.1",
+    "ramda": "^0.26.1",
+    "shortid": "^2.2.14",
+    "url-slug": "^2.2.0-alpha.0"
+  },
+  "devDependencies": {},
+  "_moduleAliases": {
+    "@": "."
   }
 }

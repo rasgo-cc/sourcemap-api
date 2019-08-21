@@ -20,8 +20,8 @@ exports = module.exports = {
       target == "development"
         ? {
             colorize: true,
-            translateTime: "HH:MM:ss",
-            ignore: "pid,hostname"
+            ignore: "pid,hostname,time",
+            levelFirst: true
           }
         : false
   },
@@ -30,7 +30,7 @@ exports = module.exports = {
   },
   jwt: {
     secret: env.AUTH_JWT_SECRET || "jwt_secret",
-    expiresIn: env.AUTH_JWT_EXPIRES_IN || "1 day"
+    expiresIn: env.AUTH_JWT_EXPIRES_IN || "2 days"
   },
   auth: {
     cookie_encryption_password:
@@ -39,7 +39,8 @@ exports = module.exports = {
     basic: {
       user: env.AUTH_SIMPLE_USER || "admin",
       password: env.AUTH_SIMPLE_PASSWORD || "admin"
-    }
+    },
+    allowedAccounts: env.AUTH_ALLOWED_ACCOUNTS || true
   },
   http: {
     secure: env.HTTPS || false,

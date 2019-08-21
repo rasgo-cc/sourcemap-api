@@ -27,13 +27,15 @@ npm i -g knex
 npm i -g jake
 
 knex migrate:latest
-jake -f tasks/places.js seed
+jake -f tasks/seed.js places
 ```
 
 ## Development
 
 ```
+npm i -g eslint
 npm i -g nodemon
+npm i -g pino-pretty
 docker-compose up pg
 docker-compose up redis
 

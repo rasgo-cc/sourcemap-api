@@ -1,6 +1,8 @@
+require("module-alias/register");
+
 const Hapi = require("@hapi/hapi");
 const config = require("./config");
-const logger = require("./logger");
+const logger = require("./lib/logger");
 const db = require("./db");
 
 const pluginApiRoutesOpts = {
@@ -15,7 +17,7 @@ const hapiPlugins = [
   {
     plugin: require("hapi-pino"),
     options: {
-      instance: logger
+      instance: require("pino")(config.pino)
     }
   },
   { plugin: require("./lib/plugins/auth"), routes: pluginApiRoutesOpts },
@@ -34,7 +36,18 @@ const server = Hapi.server({
   host: config.http.host,
   port: config.http.port,
   routes: {
-    cors: config.http.cors
+    cors: config.http.cors,
+    validate: {
+      failAction: async (request, h, err) => {
+        if (config.target === "development") {
+          logger.error(err);
+          return err;
+        } else {
+          request.logger.error(err);
+          throw Boom.badRequest(`Invalid request payload input`);
+        }
+      }
+    }
   }
 });
 
