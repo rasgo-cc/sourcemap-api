@@ -1,6 +1,7 @@
 require("dotenv").config();
 const consola = require("consola");
 const knexConfig = require("../knexfile");
+const config = require("../config");
 
 const sleep = milliseconds => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -13,7 +14,9 @@ const db = {
   knex: knex,
   redis: redis,
   async init() {
-    await sleep(5000);
+    if (config.target === "production") {
+      await sleep(3000);
+    }
     let connectionOk = false;
     let retries = 10;
     consola.info("connecting to database");
