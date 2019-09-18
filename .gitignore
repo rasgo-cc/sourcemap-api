@@ -1,5 +1,6 @@
 .env*
 tmp/**/*
+ext/**/*
 
 # Created by https://www.gitignore.io/api/node,macos,python,windows
 # Edit at https://www.gitignore.io/?templates=node,macos,python,windows
