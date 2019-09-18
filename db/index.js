@@ -1,3 +1,4 @@
+require("dotenv").config();
 const consola = require("consola");
 const knexConfig = require("../knexfile");
 
@@ -6,12 +7,13 @@ const sleep = milliseconds => {
 };
 
 const knex = require("knex")(knexConfig);
-const redis = require("async-redis");
+const redis = require("async-redis").createClient(process.env.REDIS_URL);
 
 const db = {
+  knex: knex,
+  redis: redis,
   async init() {
-    await sleep(2000);
-    this.redis = redis.createClient(process.env.REDIS_URL);
+    await sleep(5000);
     let connectionOk = false;
     let retries = 10;
     consola.info("connecting to database");
@@ -32,8 +34,6 @@ const db = {
 
     consola.success(`Redis: ${redis.server_info.redis_version}`);
   },
-  knex: knex,
-  redis: redis,
   async quit() {
     await knex.destroy();
     await redis.quit();
