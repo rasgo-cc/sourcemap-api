@@ -1,15 +1,17 @@
 const consola = require("consola");
 const knexConfig = require("../knexfile");
 
-const knex = require("knex")(knexConfig);
-
 const sleep = milliseconds => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
 
+const knex = require("knex")(knexConfig);
+const redis = require("async-redis");
+
 const db = {
   async init() {
     await sleep(2000);
+    this.redis = redis.createClient(process.env.REDIS_URL);
     let connectionOk = false;
     let retries = 10;
     consola.info("connecting to database");
@@ -27,8 +29,7 @@ const db = {
     if (!connectionOk) {
       consola.error("couldn't establish connection to database");
     }
-    const redis = require("async-redis").createClient(process.env.REDIS_URL);
-    await sleep(2000);
+
     consola.success(`Redis: ${redis.server_info.redis_version}`);
   },
   knex: knex,
