@@ -4,9 +4,6 @@ const knexConfig = require("../knexfile");
 const knex = require("knex")(knexConfig);
 const redis = require("async-redis").createClient(process.env.REDIS_URL);
 
-const util = require("util");
-const { isEmpty, omit } = require("lodash");
-
 const sleep = milliseconds => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 };

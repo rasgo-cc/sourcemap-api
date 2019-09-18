@@ -37,8 +37,8 @@ exports = module.exports = {
       env.AUTH_COOKIE_ENCRYPTION_PASSWORD ||
       "cookie_encryption_password_secure",
     basic: {
-      user: env.AUTH_SIMPLE_USER || "admin",
-      password: env.AUTH_SIMPLE_PASSWORD || "admin"
+      user: env.AUTH_BASIC_USER || "admin",
+      password: env.AUTH_BASIC_PASSWORD || "admin"
     },
     allowedAccounts: env.AUTH_ALLOWED_ACCOUNTS || true
   },
@@ -63,6 +63,9 @@ exports = module.exports = {
   db: {
     connStr: env.DB_CONNSTR,
     poolSize: env.DB_POOLSIZE || 10,
+    redis: {
+      expire: 60 * 60 * 24
+    },
     debug: target == "development" ? env.DB_DEBUG || false : false
   },
   geohash: {

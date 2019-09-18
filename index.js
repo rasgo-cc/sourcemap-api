@@ -1,5 +1,3 @@
-require("module-alias/register");
-
 const Hapi = require("@hapi/hapi");
 const config = require("./config");
 const logger = require("./lib/logger");
