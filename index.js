@@ -20,8 +20,8 @@ const hapiPlugins = [
   },
   { plugin: require("./lib/plugins/auth"), routes: pluginApiRoutesOpts },
   { plugin: require("./lib/plugins/common"), routes: pluginApiRoutesOpts },
-  { plugin: require("./lib/plugins/place"), routes: pluginApiRoutesOpts },
-  { plugin: require("./lib/plugins/user"), routes: pluginApiRoutesOpts }
+  { plugin: require("./lib/plugins/place"), routes: pluginApiRoutesOpts }
+  // { plugin: require("./lib/plugins/user"), routes: pluginApiRoutesOpts }
 ];
 if (config.target == "development") {
   hapiPlugins.push({

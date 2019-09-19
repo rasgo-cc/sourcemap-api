@@ -1,4 +1,4 @@
-FROM node:12.3.1-alpine
+FROM node:12.3.1
 
 RUN mkdir -p /app
 
@@ -16,5 +16,4 @@ RUN yarn global add knex
 RUN yarn global add jake
 RUN yarn install --production
 
-EXPOSE 80
-CMD node -r esm --use_strict /app/index.js --production
+CMD node --use_strict /app/index.js --production

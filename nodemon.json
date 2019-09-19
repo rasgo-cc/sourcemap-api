@@ -1,5 +1,5 @@
 {
   "ignore": [".git", "node_modules"],
-  "exec": "node -r esm",
+  "exec": "node ",
   "verbose": true
 }
