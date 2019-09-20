@@ -46,7 +46,7 @@ exports = module.exports = {
     secure: env.HTTPS || false,
     host: env.HTTP_HOST || "0.0.0.0",
     port: env.HTTP_PORT || 8080,
-    cors: env.HTTP_CORS ? { origin: [env.HTTP_CORS.split(",")] } : false
+    cors: env.HTTP_CORS ? { origin: env.HTTP_CORS.split(",") } : false
   },
   api: {
     version: env.API_VERSION || Package.version,
