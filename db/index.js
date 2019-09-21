@@ -1,5 +1,6 @@
 require("dotenv").config();
 const consola = require("consola");
+const chalk = require("chalk");
 const knexConfig = require("../knexfile");
 const config = require("../config");
 
@@ -42,5 +43,19 @@ const db = {
     await redis.quit();
   }
 };
+
+if (config.target === "development") {
+  knex.on("query", function(queryData) {
+    let builtSql = queryData.sql;
+    queryData.bindings.forEach(binding => {
+      const bindingAsInt = parseInt(binding, 10);
+      if (!bindingAsInt) {
+        binding = "'" + binding + "'";
+      }
+      builtSql = builtSql.replace("?", binding);
+    });
+    console.debug(chalk.bgCyan.black(" SQL "), chalk.cyan(builtSql));
+  });
+}
 
 exports = module.exports = db;

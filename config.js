@@ -66,7 +66,7 @@ exports = module.exports = {
     redis: {
       expire: 60 * 60 * 24
     },
-    debug: target == "development" ? env.DB_DEBUG || false : false
+    debug: target === "development" ? env.DB_DEBUG || false : false
   },
   geohash: {
     precision: env.GEOHASH_PRECISION || 7
