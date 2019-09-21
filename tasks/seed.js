@@ -82,8 +82,6 @@ task("places", [], { async: true }, () => {
       places.push(place);
     })
     .on("end", async () => {
-      await db.knex("places").del();
-
       db.knex("places")
         .insert(places)
         .then(() => {
