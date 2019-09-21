@@ -7,7 +7,7 @@ BB.promisifyAll(pg);
 const dbName = process.env.POSTGRES_DB;
 
 const client = new pg.Client(
-  `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.CONTAINER_HOST}:${process.env.POSTGRES_PORT}/postgres`
+  process.env.DB_CONNSTR.replace(dbName, "postgres")
 );
 
 async function execute(str) {
