@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --production",
-    "start": "node --use_strict index.js --production",
+    "dev": "nodemon --use_strict index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:drop": "jake -f tasks/db.js drop",
     "db:create": "jake -f tasks/db.js create",
