@@ -27,7 +27,10 @@ npm i -g knex
 npm i -g jake
 
 knex migrate:latest
-jake -f tasks/seed.js places
+jake -f tasks/seed.js all
+
+// to reset db (drop & create)
+jake -f tasks/db.js reset
 ```
 
 ## Development
