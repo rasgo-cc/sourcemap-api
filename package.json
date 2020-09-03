@@ -18,7 +18,7 @@
     "@hapi/basic": "^5.1.0",
     "@hapi/bell": "^10.1.0",
     "@hapi/boom": "^7.4.2",
-    "@hapi/hapi": "^18.3.2",
+    "@hapi/hapi": "^19.1.1",
     "@hapi/hoek": "^7.1.0",
     "@hapi/inert": "^5.2.0",
     "@hapi/joi": "^15.1.1",
